@@ -2,9 +2,10 @@ import Colors from '../../../native-base-theme/variables/commonColor';
 
 export default {
   navbarProps: {
-    navigationBarStyle: { backgroundColor: 'white' },
+    navigationBarStyle: { backgroundColor: '#202020' },
     titleStyle: {
-      color: Colors.textColor,
+      // color: Colors.textColor,
+      color: '#202020',
       alignSelf: 'center',
       letterSpacing: 2,
       fontSize: Colors.fontSizeBase,

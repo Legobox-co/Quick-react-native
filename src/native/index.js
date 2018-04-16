@@ -23,7 +23,7 @@ const Root = ({ store, persistor }) => (
     >
       <StyleProvider style={getTheme(theme)}>
         <Router>
-          <Stack key="root">
+          <Stack key="root" hideTabBar>
             {Routes}
           </Stack>
         </Router>
