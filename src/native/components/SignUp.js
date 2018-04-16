@@ -28,7 +28,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <Container >
+      <Container contentContainerStyle={{flex: 1}}>
       <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -42,7 +42,12 @@ class SignUp extends React.Component {
         </Header>
         <View style={styles.center}>
           <Image source={require('../../images/launch-g.gif')} style={styles.centeredImage}></Image>
-          <Title style={[styles.title, styles.center]}>Signup with you google account</Title>
+          <Title style={[styles.title, styles.center]}>Signup with your google account</Title>
+          <View style={ styles.center}>
+            <Button style={[{backgroundColor: 'red', marginTop:20}, styles.center]}>
+              <Text>Signin with google</Text>
+            </Button>
+          </View>
         </View>
       </Container>
     );
@@ -83,33 +88,5 @@ let styles = StyleSheet.create({
     margin:24
   }
 });
-
-const slides = [
-  {
-    key: 'somethun',
-    title: 'Campus Locate',
-    text: 'Find places around you',
-    color:'#2a2a2a',
-    image: require('../../images/launch-g.gif'),
-    imageStyle: styles.imageIntro,
-    backgroundColor: '#ffffff'
-  },
-  {
-    key: 'somethun-dos',
-    title: 'Ease of Use',
-    text: 'all location details are provided by the people around you',
-    image: require('../../images/launcicon.png'),
-    imageStyle: styles.imageIntro,
-    backgroundColor: '#febe29'
-  },
-  {
-    key: 'somethun1',
-    title: 'Add Locations',
-    text: 'Feel free to add locations of your choosing',
-    image: require('../../images/background.png'),
-    imageStyle: styles.imageIntro,
-    backgroundColor: '#22bcb5'
-  }
-];
 
 export default SignUp;
