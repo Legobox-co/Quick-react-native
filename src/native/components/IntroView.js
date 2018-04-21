@@ -41,7 +41,7 @@ class Intro extends React.Component {
           right: 0,
         }}
       >
-        <AppIntroSlider slides={slides} onDone={this._onDone} />
+        <AppIntroSlider slides={slides} onDone={this._onDone} activeDotColor='#202020' />
       </View>
     );
   }
@@ -65,13 +65,12 @@ let styles = StyleSheet.create({
   },
 });
 
-const slides = [
-  {
+const slides = [{
     key: 'somethun',
     title: 'Campus Locate',
     text: 'Find places around you',
     color: '#2a2a2a',
-    image: require('../../images/launch-g.gif'),
+    image: require('../../images/Logo.png'),
     imageStyle: styles.imageIntro,
     backgroundColor: '#ffffff',
   },

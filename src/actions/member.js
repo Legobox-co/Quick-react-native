@@ -5,39 +5,47 @@ import { Firebase, FirebaseRef } from '../lib/firebase';
 /**
   * Sign Up to Firebase
   */
-export function signUp(formData) {
-  const {
-    email,
-    password,
-    password2,
-    firstName,
-    lastName,
-  } = formData;
+export function signUp() {
 
   return dispatch => new Promise(async (resolve, reject) => {
-    // Validation checks
-    if (!firstName) return reject({ message: ErrorMessages.missingFirstName });
-    if (!lastName) return reject({ message: ErrorMessages.missingLastName });
-    if (!email) return reject({ message: ErrorMessages.missingEmail });
-    if (!password) return reject({ message: ErrorMessages.missingPassword });
-    if (!password2) return reject({ message: ErrorMessages.missingPassword });
-    if (password !== password2) return reject({ message: ErrorMessages.passwordsDontMatch });
 
     await statusMessage(dispatch, 'loading', true);
 
+    var provider = new Firebase.auth.GoogleAuthProvider();
     // Go to Firebase
-    return Firebase.auth()
-      .createUserWithEmailAndPassword(email, password)
+  //   firebase
+  // .auth()
+  // .signInWithPopup(provider)
+  // .then((result) => {
+  //   // This gives you a Google Access Token. You can use it to access the Google API.
+  //   var token = result.credential.accessToken;
+  //   // The signed-in user info.
+  //   var user = result.user;
+  //   // ...
+  // })
+  // .catch((error) => {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   // The email of the user's account used.
+  //   var email = error.email;
+  //   // The firebase.auth.AuthCredential type that was used.
+  //   var credential = error.credential;
+  //   // ...
+  // });
+
+    return Firebase.auth().signInWithPopup(provider)
       .then((res) => {
+        console.log(res);
         // Send user details to Firebase database
-        if (res && res.uid) {
-          FirebaseRef.child(`users/${res.uid}`).set({
-            firstName,
-            lastName,
-            signedUp: Firebase.database.ServerValue.TIMESTAMP,
-            lastLoggedIn: Firebase.database.ServerValue.TIMESTAMP,
-          }).then(() => statusMessage(dispatch, 'loading', false).then(resolve));
-        }
+        // if (res && res.uid) {
+        //   FirebaseRef.child(`users/${res.uid}`).set({
+        //     firstName,
+        //     lastName,
+        //     signedUp: Firebase.database.ServerValue.TIMESTAMP,
+        //     lastLoggedIn: Firebase.database.ServerValue.TIMESTAMP,
+        //   }).then(() => statusMessage(dispatch, 'loading', false).then(resolve));
+        // }
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
 }

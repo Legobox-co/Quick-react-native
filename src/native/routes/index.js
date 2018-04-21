@@ -34,6 +34,7 @@ const Index = (
   <Stack hideTabBar key="root">
   <Scene hideNavBar={true} key="intro" component={IntroViewComponent} initial/>
   <Scene hideNavBar={true} key="signup" component={SignUpComponent} back backTitle="Back" />
+  <Scene hideNavBar={true} key="map" component={MapComponent} />
   </Stack>
 );
 

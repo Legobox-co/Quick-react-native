@@ -14,12 +14,14 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      password2: '',
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit = () => {
+    this.props.onFormSubmit()
+      .then(() => Actions.map())
+      .catch(e => console.log(`Error: ${e}`));
   }
 
   _onDone = () => {
